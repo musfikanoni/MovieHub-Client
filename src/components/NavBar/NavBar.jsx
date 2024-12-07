@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const NavBar = () => {
 
-    // const { user, signOutUser } = useContext(AuthContext);
+    const { user, signOutUser } = useContext(AuthContext);
 
-    // const handleSignOut = () => {
-        // signOutUser()  
-        // .then(()=>{console.log('user sign out')})
-        // .catch(error => console.log(error))
-    // }
+    const handleSignOut = () => {
+        signOutUser()  
+        .then(()=>{console.log('user sign out')})
+        .catch(error => console.log(error))
+    }
 
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/allmovies">All Movies</NavLink></li>
-        <li><NavLink to="/login">Login</NavLink></li>
-        <li><NavLink to="/register">Ragister</NavLink></li>
-        <li><NavLink to="/"></NavLink></li>
+        {/* <li><NavLink to="/login">Login</NavLink></li>
+        <li><NavLink to="/register">Ragister</NavLink></li> */}
+        {/* <li><NavLink to="/addmovie">Add Movie</NavLink></li>
+        <li><NavLink to="/myfavorite">Add Movie</NavLink></li> */}
 
-        {/* {
+        {
             user && <>
-                <li><NavLink to="/orders">Orders</NavLink></li>
+                <li><NavLink to="/addmovie">Add Movie</NavLink></li>
+                <li><NavLink to="/myfavorite">My Favorites</NavLink></li>
                 <li><NavLink to="/profile">Profile</NavLink></li>
             </>
-        } */}
+        }
     </>
 
     return (
@@ -58,15 +61,19 @@ const NavBar = () => {
                     {links}
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    {/* {
+                <div className="navbar-end gap-5">
+                    {
                         user ? 
                         <>
                         <span>{user.email}</span>
-                        <a onClick={handleSignOut} className="btn">Register</a>
+                        <a onClick={handleSignOut} className="btn">Logout</a>
                         </> :
-                         <Link to="/login">Login</Link>
-                    } */}
+                        <div className='gap-5'>
+                            <Link className='btn' to="/login">Login</Link>
+                            <Link className='btn' to="/register">Register</Link>
+                        </div>
+                    }
+                    {/* <a href="" className='btn'>{user?.email}</a> */}
                 </div>
             </div>
         </div>
