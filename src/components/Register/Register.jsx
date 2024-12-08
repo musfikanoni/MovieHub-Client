@@ -1,9 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const navigate = useNavigate();
+
+    const [success, setSuccess] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
 
     const { createUser } = useContext(AuthContext);
 
@@ -13,11 +16,27 @@ const Register = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log('form login', email, password);
+        
+
+        //reset error and status
+        setErrorMessage('');
+        setSuccess(false);
+
+        if(password.length < 6){
+            setErrorMessage('Password should be 6 charecter')
+        }
+
+        const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+        if(!passwordRegex.test(password)){
+            setErrorMessage('At last 1 uppercase,1 lowercase and 1 number and 1 special character');
+            return;
+        }
 
         //create user
         createUser(email, password)
         .then(result => {
             console.log(result.user);
+            setSuccess(true);
             e.target.reset();
             navigate('/');
             const newUser = { name, email }
@@ -33,7 +52,11 @@ const Register = () => {
             .then(res => res.json())
             .then(data => console.log('successfully added', data));
         })
-        .catch(error => console.log('error', error));
+        .catch(error => {
+            console.log('error', error);
+            setErrorMessage(error.message);
+            setSuccess(false);
+        });
     }
     return (
         <div>
@@ -53,6 +76,12 @@ const Register = () => {
                                 </div>
                                 <div className="form-control">
                                 <label className="label">
+                                    <span className="label-text">Photo</span>
+                                </label>
+                                <input type="text" name='photo' placeholder="Photo url" className="input input-bordered" required />
+                                </div>
+                                <div className="form-control">
+                                <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email" name='email' placeholder="email" className="input input-bordered" required />
@@ -67,6 +96,12 @@ const Register = () => {
                                 <button className="btn btn-primary">Register</button>
                                 </div>
                             </form>
+                            {
+                                errorMessage && <p className='text-red-700'>{errorMessage}</p>
+                            }
+                            {
+                                success && <p>Succssfully Register</p>
+                            }
                         </div>
                     </div>
                 </div>
