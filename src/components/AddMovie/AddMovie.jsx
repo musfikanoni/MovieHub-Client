@@ -63,10 +63,10 @@ const AddMovie = () => {
                                     </label>
                                     <select name='genre' className="select select-bordered lg:w-[335px] md:w-[240px] w-[145px] max-w-sm">
                                         <option disabled selected>Genre</option>
-                                        <option>comedy</option>
-                                        <option>drama</option>
-                                        <option>horror</option>
-                                        <option>action</option>
+                                        <option>Comedy</option>
+                                        <option>Drama</option>
+                                        <option>Horror</option>
+                                        <option>Action</option>
                                     </select>
                                 </div>
                                 <div>

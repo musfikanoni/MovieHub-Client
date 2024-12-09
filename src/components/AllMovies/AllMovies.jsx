@@ -7,13 +7,18 @@ const AllMovies = () => {
     const movies = useLoaderData();
     return (
         <div>
-            <h1>All Movies: {movies.length}</h1>
-            {
-                movies.map(movie => <MovieCard
-                 key={movie._id}
-                 movie = {movie}>
-                </MovieCard>)
-            }
+            <h1 className='text-center font-bold text-2xl pt-8'>All Movies</h1>
+            
+            <div className="w-10/12 mx-auto pb-14 pt-16">
+                <div className='gap-8 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>
+                    {
+                        movies.map(movie => <MovieCard
+                        key={movie._id}
+                        movie = {movie}>
+                        </MovieCard>)
+                    }
+                </div>
+            </div>
         </div>
     );
 };
