@@ -16,6 +16,7 @@ import AddMovie from './components/AddMovie/AddMovie';
 import MyFavorites from './components/MyFavorites/MyFavorites';
 import PrivateRoutes from './Routs/PrivateRoutes';
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,8 +27,9 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/allmovies",
+        path: "allmovies",
         element: <AllMovies></AllMovies>,
+        loader: () => fetch('http://localhost:5000/movie'),
       },
       {
         path: "login",
@@ -39,15 +41,17 @@ const router = createBrowserRouter([
       },
       {
         path: "addmovie",
-        element: <PrivateRoutes><AddMovie></AddMovie></PrivateRoutes>,
+        element: <PrivateRoutes><AddMovie></AddMovie></PrivateRoutes>
       },
       {
         path: "myfavorite",
         element: <PrivateRoutes><MyFavorites></MyFavorites></PrivateRoutes>
-      }
+      },
+
 
     ],
   },
+
 
 ]);
 

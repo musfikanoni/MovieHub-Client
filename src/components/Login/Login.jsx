@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const navigate = useNavigate();
 
-    const {signInUser} = useContext(AuthContext);
+    const {signInUser, signInWithGoogle} = useContext(AuthContext);
 
     const handleLogIn = e => {
         e.preventDefault()
@@ -21,6 +21,16 @@ const Login = () => {
         })
         .catch(error => console.log('error', error))
     }
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+        .then(result => {
+            console.log(result.user);
+            navigate('/');
+        })
+        .catch(error => console.log('error', error))
+    }
+
     return (
         <div>
             <div className="hero bg-base-200 min-h-screen">
@@ -46,7 +56,10 @@ const Login = () => {
                         </label>
                         </div>
                         <div className="form-control mt-6">
-                        <button className="btn btn-primary">Login</button>
+                            <button className="btn btn-primary">Login</button>
+                        </div>
+                        <div className="form-control mt-6">
+                            <button onClick={handleGoogleSignIn} className="btn btn-accent">Google</button>
                         </div>
                     </form>
                     </div>
