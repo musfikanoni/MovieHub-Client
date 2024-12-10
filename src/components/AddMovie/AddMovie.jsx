@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 
 const AddMovie = () => {
-
+    const [errorMessage, setErrorMessage] = useState('')
     const handleAddMovie = e => {
         e.preventDefault()
         const form = e.target;
@@ -16,6 +16,9 @@ const AddMovie = () => {
         const newMovie = {poster, title, genre, year, duration, rating, summary};
         console.log(newMovie);
 
+        if(summary.length < 10){
+            setErrorMessage('At least 10 characters must be entered')
+        }
         //send data to the server
         fetch('http://localhost:5000/movie', {
             method: 'POST',
@@ -27,6 +30,8 @@ const AddMovie = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data);
+            
+            e.target.reset();
             if(data.insertedId){
                 Swal.fire({
                     title: 'Success!',
@@ -100,12 +105,15 @@ const AddMovie = () => {
                             <label className="label">
                                 <span className="label-text">Summary</span>
                             </label>
-                            <textarea name='summary' className="textarea textarea-bordered" placeholder="Summary"></textarea>
+                            <textarea name='summary' required className="textarea textarea-bordered" placeholder="Summary"></textarea>
                         </div>
                         <div className="form-control mt-6">
                             {/* <input type="submit" className='btn btn-primary' value="Add Movie" /> */}
-                            <button className='btn btn-primary'>Add Movie</button>
+                            <button className='btn hover:bg-[#E50914] bg-[#b70c14] text-white'>Add Movie</button>
                         </div>
+                        {
+                            errorMessage && <p className='text-red-700'>{errorMessage}</p>
+                        }
                     </form>
                 </div>
             </div>

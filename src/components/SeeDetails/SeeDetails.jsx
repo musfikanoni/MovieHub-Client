@@ -1,7 +1,9 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const SeeDetails = () => {
+    const navigate = useNavigate();
+
     const movie = useLoaderData();
     const {_id, poster, title, genre, year, duration, rating, summary} = movie;
 
@@ -16,12 +18,21 @@ const SeeDetails = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
+            
             if (result.isConfirmed) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
+              fetch(`http://localhost:5000/movie/${_id}`, {
+                method: 'DELETE'
+              })
+              .then(res => res.json())
+              .then(data => {
+                console.log(data);
+                navigate('/allmovies')
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your movie has been deleted.",
+                    icon: "success"
+                });
+              })
             }
         });
     }
@@ -29,9 +40,9 @@ const SeeDetails = () => {
     return (
         <div>
             <h1>details</h1>
-            <div className="flex justify-center  pb-14 pt-16">
+            <div className="flex justify-center pb-14 pt-16">
                 <div className="card-side lg:flex flex-none rounded-xl bg-base-100 border shadow-2xl lg:w-8/12 w-10/12">
-                            <img className="ms-8 mt-12 rounded-xl lg:h-[220px] h-[147px] object-contain"
+                            <img className="ms-8 mt-9 rounded-xl lg:h-[220px] h-[147px] object-contain"
                             src={poster}
                             alt="Movie" />
                     <div className="card-body">
