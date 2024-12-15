@@ -1,8 +1,12 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const SeeDetails = () => {
     const navigate = useNavigate();
+
+    const { user, signOutUser } = useContext(AuthContext);
 
     const movie = useLoaderData();
     const {_id, poster, title, genre, year, duration, rating, summary} = movie;
@@ -53,7 +57,14 @@ const SeeDetails = () => {
                         <p className="font-semibold">Rating: <span className="font-normal">{rating}</span></p>
                         <p className="font-semibold">Summary: <span className="text-sm font-normal">{summary}</span></p>
                         <div className="card-actions lg:pt-0 pt-5 md:justify-start lg:justify-end justify-center">
-                            <button className="btn btn-outline font-semibold text-base rounded-full  hover:bg-[#E50914] bg-[#b70c14] text-white">Add to Favorite</button>
+                            {
+                                user && <>
+                                    <Link to={`/updateMovie/${_id}`}>
+                                        <button className="btn font-semibold text-base rounded-full  hover:bg-[#E50914] bg-[#b70c14] text-white">Update Movie</button>
+                                    </Link>
+                                </>
+                            }
+                            <button className="btn font-semibold text-base rounded-full  hover:bg-[#E50914] bg-[#b70c14] text-white">Add to Favorite</button>
                             <button onClick={() => handleDelete(_id)} className="btn font-semibold text-base rounded-full  hover:bg-[#E50914] bg-[#b70c14] text-white">Delete Movie</button>
                         </div>
                     </div>
