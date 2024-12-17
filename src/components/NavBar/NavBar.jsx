@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import { FaRegCircleUser } from 'react-icons/fa6';
 
 const NavBar = () => {
 
@@ -86,15 +87,33 @@ const NavBar = () => {
                         </label>
                     </div>
                     {
-                        user ? 
-                        <>
-                        <span>{user.photo}</span>
-                        <a onClick={handleSignOut} className="btn">Logout</a>
-                        </> :
+                        user ? (
+                            <div className='flex gap-5 items-center'>
+                                <div className="group">
+                                    <Link>
+                                    {
+                                        user.photoURL ? (
+                                            <img src={user.photoURL} alt="" className='w-10 h-10 rounded-full cursor-pointer' />
+                                        ) : (
+                                            <FaRegCircleUser className='text-3xl text-gray-700 cursor-pointer' />
+                                        )
+                                    }
+                                    </Link>
+                                    <div className='absolute right-32 mt-2 w-40 bg-white text-gray-600 text-sm rounded-lg p-2 hidden group-hover:block'>
+                                        {user.displayName || 'User'}
+                                    </div>
+                                </div>
+                                {/* <span>{user.photo}</span> */}
+                                <button>
+                                    <a onClick={handleSignOut} className="btn">Logout</a>
+                                </button>
+                            </div>
+                        ):(
                         <div className='gap-5'>
                             <Link className='btn' to="/login">Login</Link>
                             <Link className='btn' to="/register">Register</Link>
                         </div>
+                        )
                     }
                     {/* <a href="" className='btn'>{user?.email}</a> */}
                 </div>
