@@ -17,6 +17,7 @@ import MyFavorites from './components/MyFavorites/MyFavorites';
 import PrivateRoutes from './Routs/PrivateRoutes';
 import SeeDetails from './components/SeeDetails/SeeDetails';
 import UpdateMovie from './components/UpdateMovie/UpdateMovie';
+import FeaturedMovies from './components/FeaturedMovies/FeaturedMovies'
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        children: [
+          {
+            path: "/",
+            element: <FeaturedMovies></FeaturedMovies>,
+            loader: () => fetch('http://localhost:5000/'),
+          }
+        ]
+
       },
       {
         path: "allmovies",
