@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import MovieCard from '../MovieCard/MovieCard';
 
 const FeaturedMovies = () => {
@@ -18,6 +17,11 @@ const FeaturedMovies = () => {
                         </MovieCard>)
                     }
                 </div>
+            </div>
+            <div className="flex justify-center">
+                <Link to="/allmovies">
+                    <button className="btn btn-outline btn-error">See all movies</button>
+                </Link>
             </div>
         </div>
     );
