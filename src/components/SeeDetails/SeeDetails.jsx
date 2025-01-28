@@ -58,7 +58,7 @@ const SeeDetails = () => {
           }).then((result) => {
             
             if (result.isConfirmed) {
-              fetch(`https://assignment-10-server-plum-eight.vercel.app/${_id}`, {
+              fetch(`https://assignment-10-server-plum-eight.vercel.app/movie/${_id}`, {
                 method: 'DELETE'
               })
               .then(res => res.json())

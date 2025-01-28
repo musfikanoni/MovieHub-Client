@@ -63,12 +63,12 @@ const router = createBrowserRouter([
       {
         path: "seeDetails/:id",
         element: <PrivateRoutes><SeeDetails></SeeDetails></PrivateRoutes>,
-        loader: ({params}) => fetch(`https://assignment-10-server-plum-eight.vercel.app/${params.id}`),
+        loader: ({params}) => fetch(`https://assignment-10-server-plum-eight.vercel.app/movie/${params.id}`),
       },
       {
         path: "updateMovie/:id",
         element: <PrivateRoutes><UpdateMovie></UpdateMovie></PrivateRoutes>,
-        loader: ({params}) => fetch(`https://assignment-10-server-plum-eight.vercel.app/${params.id}`)
+        loader: ({params}) => fetch(`https://assignment-10-server-plum-eight.vercel.app/movie/${params.id}`)
       }
 
     ],
