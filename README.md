@@ -1,6 +1,6 @@
 Website Name: MovieHub
 
-live link:
+live link: https://ph-assignment10.netlify.app/
 
 Five feature of this website:  
 
