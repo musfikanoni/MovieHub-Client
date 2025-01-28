@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const SeeDetails = () => {
     const navigate = useNavigate();
@@ -43,7 +44,9 @@ const SeeDetails = () => {
 
     return (
         <div>
-            <h1>details</h1>
+            <Helmet>
+                <title>Movie Details | MovieHub</title>
+            </Helmet>
             <div className="flex justify-center pb-14 pt-16">
                 <div className="card-side lg:flex flex-none rounded-xl bg-base-100 border shadow-2xl lg:w-8/12 w-10/12">
                             <img className="ms-8 mt-9 rounded-xl lg:h-[220px] h-[147px] object-contain"

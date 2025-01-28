@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 
 const AddMovie = () => {
@@ -45,6 +46,9 @@ const AddMovie = () => {
 
     return (
         <div className='flex justify-center py-20'>
+            <Helmet>
+                <title>Add Movie | MovieHub</title>
+            </Helmet>
             <div className="card bg-base-100 w-full lg:max-w-3xl md:max-w-xl max-w-sm shrink-0 shadow-2xl">
                 <div className="flex gap-10 ">
                     <form onSubmit={handleAddMovie} className="card-body">

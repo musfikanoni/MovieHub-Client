@@ -7,7 +7,7 @@ const FeaturedMovies = () => {
 
     return (
         <div>
-            <h1 className='text-center text-2xl font-semibold'>Featured Movies</h1> 
+            <h1 className='text-center text-3xl font-bold pt-16'>Featured Movies</h1> 
             <div className="w-10/12 mx-auto pb-14 pt-16">
                 <div className='gap-8 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>
                     {
@@ -20,7 +20,7 @@ const FeaturedMovies = () => {
             </div>
             <div className="flex justify-center">
                 <Link to="/allmovies">
-                    <button className="btn btn-outline btn-error">See all movies</button>
+                    <button className="btn text-lg rounded-full mb-10 bg-white hover:bg-[#E50914] border border-[#b70c14] hover:border-[#E50914] text-[#b70c14] hover:text-white">See all movies</button>
                 </Link>
             </div>
         </div>

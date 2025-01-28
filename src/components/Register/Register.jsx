@@ -1,14 +1,41 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
     const navigate = useNavigate();
-
     const [success, setSuccess] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
+    const { createUser, signInWithGoogle} = useContext(AuthContext);
+    const [password, setPassword] = useState("");
+    const [passwordErrors, setPasswordErrors] = useState([]);
 
-    const { createUser } = useContext(AuthContext);
+    
+    const validatePassword = (password) => {
+        const errors = [];
+        if (password.length < 6) errors.push("Password must be at least 6 characters long.");
+        if (!/[A-Z]/.test(password)) errors.push("Password must contain at least one uppercase letter.");
+        if (!/[a-z]/.test(password)) errors.push("Password must contain at least one lowercase letter.");
+        if (!/\d/.test(password)) errors.push("Password must contain at least one number.");
+        if (!/[@$!%*?&]/.test(password)) errors.push("Password must contain at least one special character.");
+        return errors;
+      };
+    
+      const handlePasswordChange = (e) => {
+        const newPassword = e.target.value;
+        setPassword(newPassword);
+        setPasswordErrors(validatePassword(newPassword));
+      };
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+        .then(result => {
+            navigate('/')
+            e.target.reset();
+        })
+        .catch(error => console.log('error', error))
+    }
 
     const handleRegister = e => {
         e.preventDefault()
@@ -16,28 +43,16 @@ const Register = () => {
         const photo = e.target.photo.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const user = {email, password}
         console.log('form login', email, password);
-        
 
-        //reset error and status
-        setErrorMessage('');
-        setSuccess(false);
-
-        if(password.length < 6){
-            setErrorMessage('Password should be 6 charecter')
-        }
-
-        const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-        if(!passwordRegex.test(password)){
-            setErrorMessage('At last 1 uppercase,1 lowercase and 1 number and 1 special character');
-            return;
-        }
 
         //create user
         createUser(email, password)
         .then(result => {
             console.log(result.user);
             setSuccess(true);
+           
             e.target.reset();
             navigate('/');
             const newUser = { name, email, photo }
@@ -62,13 +77,14 @@ const Register = () => {
     return (
         <div>
             <div>
+            <Helmet>
+                <title>Register | MovieHub</title>
+            </Helmet>
                 <div className="hero bg-base-200 min-h-screen">
-                    <div className="hero-content flex-col ">
-                        <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Let's Register Now!</h1>
-                        </div>
-                        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                        <div className="card bg-base-100 w-full max-w-2xl shrink-0 shadow-2xl">
                             <form  onSubmit={handleRegister} className="card-body">
+                            <h1 className="text-3xl text-center font-bold">Let's Create Account Now!</h1>
+                            
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Name</span>
@@ -87,24 +103,41 @@ const Register = () => {
                                     </label>
                                     <input type="email" name='email' placeholder="email" className="input input-bordered" required />
                                 </div>
+
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        placeholder="password"
+                                        value={password}
+                                        onChange={handlePasswordChange}
+                                        className={`input input-bordered ${
+                                            passwordErrors.length ? "input-error" : ""
+                                        }`}
+                                        required
+                                    />
+                                    {passwordErrors.length > 0 && (
+                                        <ul className="mt-2 text-sm text-red-500">
+                                            {passwordErrors.map((error, index) => (
+                                                <li key={index}>{error}</li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </div>
                                 <div className="form-control mt-6">
-                                    <button className="btn btn-primary">Register</button>
+                                    <button className="btn hover:bg-[#E50914] bg-[#b70c14] text-white">Register</button>
                                 </div>
+                                <div className="divider">OR</div>
+                                <button onClick={handleGoogleSignIn} className="btn flex items-center max-w-3xl mx-auto my-2 w-2/3">
+                                    <img className='h-8' src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="" /> 
+                                    <span>Countinue with Google</span>
+                                </button>
+                                <p>Already have an account? <Link to="/login" className='text-[#b70c14]'>Login here</Link></p>
                             </form>
-                            {
-                                errorMessage && <p className='text-red-700'>{errorMessage}</p>
-                            }
-                            {
-                                success && <p>Succssfully Register</p>
-                            }
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

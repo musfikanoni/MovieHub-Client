@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { FaRegCircleUser } from 'react-icons/fa6';
+import sitelogo from '../../assets/logo.png';
 
 const NavBar = () => {
 
@@ -16,15 +17,11 @@ const NavBar = () => {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/allmovies">All Movies</NavLink></li>
-        {/* <li><NavLink to={`/seeDetails/${}`}>see details</NavLink></li> */}
-        {/* <li><NavLink to="/addmovie">Add Movie</NavLink></li>
-        <li><NavLink to="/myfavorite">Add Movie</NavLink></li> */}
 
         {
             user && <>
                 <li><NavLink to="/addmovie">Add Movie</NavLink></li>
                 <li><NavLink to="/myfavorite">My Favorites</NavLink></li>
-                <li><NavLink to="/profile">Profile</NavLink></li>
             </>
         }
     </>
@@ -54,7 +51,8 @@ const NavBar = () => {
                         {links}
                     </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <img className='h-14' src={sitelogo} alt="" />
+                    <a className="btn btn-ghost text-xl">MovieHub</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -87,13 +85,13 @@ const NavBar = () => {
                         </label>
                     </div>
                     {
-                        user ? (
-                            <div className='flex gap-5 items-center'>
+                        user ? <>
+                            <div className="flex gap-5 items-center">
                                 <div className="group">
                                     <Link>
                                     {
                                         user.photoURL ? (
-                                            <img src={user.photoURL} alt="" className='w-10 h-10 rounded-full cursor-pointer' />
+                                            <img src={user?.photoURL} alt="" className='w-10 h-10 rounded-full cursor-pointer' />
                                         ) : (
                                             <FaRegCircleUser className='text-3xl text-gray-700 cursor-pointer' />
                                         )
@@ -103,17 +101,16 @@ const NavBar = () => {
                                         {user.displayName || 'User'}
                                     </div>
                                 </div>
-                                {/* <span>{user.photo}</span> */}
-                                <button>
-                                    <a onClick={handleSignOut} className="btn">Logout</a>
-                                </button>
+                                <button onClick={handleSignOut} className='btn'>Log Out</button>
                             </div>
-                        ):(
-                        <div className='gap-5'>
-                            <Link className='btn' to="/login">Login</Link>
-                            <Link className='btn' to="/register">Register</Link>
-                        </div>
-                        )
+                        </> : <>
+                            <Link to="/login">
+                                <button className='btn'>Login</button>
+                            </Link>
+                            <Link to="/register">
+                                <button className='btn'>Register</button>
+                            </Link>
+                        </>
                     }
                     {/* <a href="" className='btn'>{user?.email}</a> */}
                 </div>

@@ -18,6 +18,7 @@ import PrivateRoutes from './Routs/PrivateRoutes';
 import SeeDetails from './components/SeeDetails/SeeDetails';
 import UpdateMovie from './components/UpdateMovie/UpdateMovie';
 import FeaturedMovies from './components/FeaturedMovies/FeaturedMovies'
+import { HelmetProvider } from 'react-helmet-async';
 
 
 const router = createBrowserRouter([
@@ -80,7 +81,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </AuthProvider>
   </StrictMode>,
 )
