@@ -2,12 +2,13 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const navigate = useNavigate();
     const [success, setSuccess] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
-    const { createUser, signInWithGoogle} = useContext(AuthContext);
+    const { createUser, signInWithGoogle, updateUserProfile} = useContext(AuthContext);
     const [password, setPassword] = useState("");
     const [passwordErrors, setPasswordErrors] = useState([]);
 
@@ -40,12 +41,23 @@ const Register = () => {
     const handleRegister = e => {
         e.preventDefault()
         const name = e.target.name.value;
-        const photo = e.target.photo.value;
+        const photoUrl = e.target.photoUrl.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const user = {email, password}
-        console.log('form login', email, password);
+        const user = {email, password, photoUrl}
+        console.log('form login', email, password, photoUrl);
 
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+            });
 
         //create user
         createUser(email, password)
@@ -54,8 +66,14 @@ const Register = () => {
             setSuccess(true);
            
             e.target.reset();
+            updateUserProfile({displayName: name, photoURL: photoUrl})
+            Toast.fire({
+                icon: "success",
+                title: "Successfully Registered"
+              });
+
             navigate('/');
-            const newUser = { name, email, photo }
+            const newUser = { name, email, photoUrl }
 
             //save new user
             fetch('http://localhost:5000/users', {
@@ -95,7 +113,7 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Photo</span>
                                     </label>
-                                    <input type="text" name='photo' placeholder="Photo url" className="input input-bordered" required />
+                                    <input type="text" name='photoUrl' placeholder="Photo url" className="input input-bordered" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">

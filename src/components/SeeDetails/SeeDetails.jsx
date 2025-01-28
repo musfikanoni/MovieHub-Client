@@ -11,6 +11,39 @@ const SeeDetails = () => {
 
     const movie = useLoaderData();
     const {_id, poster, title, genre, year, duration, rating, summary} = movie;
+    const handleAddFav = fav =>{
+        if(user && user.email){
+            console.log(user.email, fav)
+            const cardFav = {
+                favId: _id,
+                user: user.email,
+                title,
+                poster,
+                genre,
+                duration,
+                year,
+                rating
+            }
+            fetch("http://localhost:5000/myfavorites", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(cardFav),
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.insertedId) {
+                    // Successfully added to favorites
+                    Swal.fire({
+                        title: "Success!",
+                        text: `${title} Movie added to favorites.`,
+                        icon: "success",
+                    });
+                }
+        })
+        }
+    }
 
     const handleDelete = _id => {
         console.log(_id);
@@ -67,7 +100,7 @@ const SeeDetails = () => {
                                     </Link>
                                 </>
                             }
-                            <button className="btn font-semibold text-base rounded-full  hover:bg-[#E50914] bg-[#b70c14] text-white">Add to Favorite</button>
+                            <button onClick={() => handleAddFav(movie)} className="btn font-semibold text-base rounded-full  hover:bg-[#E50914] bg-[#b70c14] text-white">Add to Favorite</button>
                             <button onClick={() => handleDelete(_id)} className="btn font-semibold text-base rounded-full  hover:bg-[#E50914] bg-[#b70c14] text-white">Delete Movie</button>
                         </div>
                     </div>

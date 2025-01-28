@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -13,10 +14,26 @@ const Login = () => {
         const password = e.target.password.value;
         console.log('from sign up', email, password);
 
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+            });
+
         signInUser(email, password)
         .then(result => {
             console.log(result.user);
             e.target.reset();
+            Toast.fire({
+                icon: "success",
+                title: "Successfully Logged In"
+              });
             navigate('/');
         })
         .catch(error => console.log('error', error))

@@ -21,7 +21,7 @@ const NavBar = () => {
         {
             user && <>
                 <li><NavLink to="/addmovie">Add Movie</NavLink></li>
-                <li><NavLink to="/myfavorite">My Favorites</NavLink></li>
+                <li><NavLink to="/myfavorites">My Favorites</NavLink></li>
             </>
         }
     </>
@@ -98,7 +98,7 @@ const NavBar = () => {
                                     }
                                     </Link>
                                     <div className='absolute right-32 mt-2 w-40 bg-white text-gray-600 text-sm rounded-lg p-2 hidden group-hover:block'>
-                                        {user.displayName || 'User'}
+                                        {user?.displayName || 'User'}
                                     </div>
                                 </div>
                                 <button onClick={handleSignOut} className='btn'>Log Out</button>
