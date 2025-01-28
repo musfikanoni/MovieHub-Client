@@ -15,7 +15,7 @@ const MyFavCard = ({ fav, onDelete }) => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/myfavorites/${_id}`, {
+                fetch(`https://assignment-10-server-plum-eight.vercel.app/myfavorites/${_id}`, {
                     method: 'DELETE',
                 })
                 .then((res) => res.json())

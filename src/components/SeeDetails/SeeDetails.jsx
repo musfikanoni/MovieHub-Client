@@ -24,7 +24,7 @@ const SeeDetails = () => {
                 year,
                 rating
             }
-            fetch("http://localhost:5000/myfavorites", {
+            fetch("https://assignment-10-server-plum-eight.vercel.app/myfavorites", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -58,7 +58,7 @@ const SeeDetails = () => {
           }).then((result) => {
             
             if (result.isConfirmed) {
-              fetch(`http://localhost:5000/movie/${_id}`, {
+              fetch(`https://assignment-10-server-plum-eight.vercel.app/${_id}`, {
                 method: 'DELETE'
               })
               .then(res => res.json())

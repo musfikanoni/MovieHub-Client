@@ -6,7 +6,6 @@ const UpdateMovie = () => {
     const movie = useLoaderData();
     const {_id, poster, title, genre, year, duration, rating, summary} = movie;
 
-    // const [errorMessage, setErrorMessage] = useState('')
         const handleUpdateMovie = e => {
             e.preventDefault()
             const form = e.target;
@@ -24,7 +23,7 @@ const UpdateMovie = () => {
                 setErrorMessage('At least 10 characters must be entered')
             }
             //send data to the server
-            fetch(`http://localhost:5000/movie/${_id}`, {
+            fetch(`https://assignment-10-server-plum-eight.vercel.app/movie/${_id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

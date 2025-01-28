@@ -11,7 +11,7 @@ const AllMovies = () => {
     console.log(search);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/movie?searchParams=${search}`)
+        fetch(`https://assignment-10-server-plum-eight.vercel.app/movie?searchParams=${search}`)
         .then(res => res.json())
         .then((data) => {
             setMovies(data);

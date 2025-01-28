@@ -76,7 +76,7 @@ const Register = () => {
             const newUser = { name, email, photoUrl }
 
             //save new user
-            fetch('http://localhost:5000/users', {
+            fetch('https://assignment-10-server-plum-eight.vercel.app/users', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

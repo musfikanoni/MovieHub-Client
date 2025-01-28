@@ -112,7 +112,6 @@ const NavBar = () => {
                             </Link>
                         </>
                     }
-                    {/* <a href="" className='btn'>{user?.email}</a> */}
                 </div>
             </div>
         </div>

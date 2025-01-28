@@ -21,7 +21,7 @@ const AddMovie = () => {
             setErrorMessage('At least 10 characters must be entered')
         }
         //send data to the server
-        fetch('http://localhost:5000/movie', {
+        fetch('https://assignment-10-server-plum-eight.vercel.app/movie', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -112,7 +112,6 @@ const AddMovie = () => {
                             <textarea name='summary' required className="textarea textarea-bordered" placeholder="Summary"></textarea>
                         </div>
                         <div className="form-control mt-6">
-                            {/* <input type="submit" className='btn btn-primary' value="Add Movie" /> */}
                             <button className='btn hover:bg-[#E50914] bg-[#b70c14] text-white'>Add Movie</button>
                         </div>
                         {

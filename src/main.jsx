@@ -33,7 +33,7 @@ const router = createBrowserRouter([
           {
             path: "/",
             element: <FeaturedMovies></FeaturedMovies>,
-            loader: () => fetch('http://localhost:5000/'),
+            loader: () => fetch('https://assignment-10-server-plum-eight.vercel.app/'),
           }
         ]
 
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
       {
         path: "allmovies",
         element: <AllMovies></AllMovies>,
-        loader: () => fetch('http://localhost:5000/movie'),
+        loader: () => fetch('https://assignment-10-server-plum-eight.vercel.app/movie'),
       },
       {
         path: "login",
@@ -58,17 +58,17 @@ const router = createBrowserRouter([
       {
         path: "myfavorites",
         element: <PrivateRoutes><MyFavorites></MyFavorites></PrivateRoutes>,
-        loader: () => fetch('http://localhost:5000/myfavorites'),
+        loader: () => fetch('https://assignment-10-server-plum-eight.vercel.app/myfavorites'),
       },
       {
         path: "seeDetails/:id",
         element: <PrivateRoutes><SeeDetails></SeeDetails></PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5000/movie/${params.id}`),
+        loader: ({params}) => fetch(`https://assignment-10-server-plum-eight.vercel.app/${params.id}`),
       },
       {
         path: "updateMovie/:id",
         element: <PrivateRoutes><UpdateMovie></UpdateMovie></PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5000/movie/${params.id}`)
+        loader: ({params}) => fetch(`https://assignment-10-server-plum-eight.vercel.app/${params.id}`)
       }
 
     ],
