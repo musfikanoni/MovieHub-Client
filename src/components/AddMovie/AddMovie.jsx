@@ -45,11 +45,12 @@ const AddMovie = () => {
     }
 
     return (
-        <div className='flex justify-center py-20'>
+        <div className='flex justify-center py-20 mt-20'>
             <Helmet>
                 <title>Add Movie | MovieHub</title>
             </Helmet>
             <div className="card bg-base-100 w-full lg:max-w-3xl md:max-w-xl max-w-sm shrink-0 shadow-2xl">
+                <h2 className='text-3xl font-bold text-center pt-8'>Add New Movie</h2>
                 <div className="flex gap-10 ">
                     <form onSubmit={handleAddMovie} className="card-body">
                         <div className="form-control">

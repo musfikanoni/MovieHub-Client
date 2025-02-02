@@ -16,7 +16,7 @@ const MyFavorites = () => {
             <Helmet>
                 <title>My Favorites | MovieHub</title>
             </Helmet>
-            <h2 className="text-3xl font-bold pt-20 pb-5 text-center">My All Favorite Movies</h2>
+            <h2 className="text-3xl font-bold pt-20 pb-5 text-center mt-20">My All Favorite Movies</h2>
             <div className="w-10/12 mx-auto pb-14 pt-16">
                 <div className="gap-8 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
                     {

@@ -23,7 +23,7 @@ const AllMovies = () => {
             <Helmet>
                 <title>All Movie | MovieHub</title>
             </Helmet>
-            <h1 className='text-center font-bold text-2xl pt-8'>All Movies</h1>
+            <h1 className='text-center font-bold text-2xl pt-8 mt-20'>All Movies</h1>
 
             <div className='w-6/12 mx-auto pt-8'>
                 <label className="input input-bordered flex items-center gap-2">
