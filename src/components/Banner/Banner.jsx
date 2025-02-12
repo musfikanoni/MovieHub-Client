@@ -3,7 +3,7 @@ import React from 'react';
 const Banner = () => {
     return (
         <div>
-            <div className="carousel w-full">
+            <div className="carousel w-full lg:pt-0 pt-20">
                 <div id="slide1" className="carousel-item relative w-full">
                     <img
                     src="https://i.ibb.co.com/CsZYnT0/Kraven3.jpg"
@@ -42,36 +42,6 @@ const Banner = () => {
                 </div>
             </div>
         </div>
-
-
-// {user ? (
-//     <div className='flex items-center gap-3'>
-//         <div className='group'>
-//             <Link to='/profile'>
-//                 {user.photoURL ? (
-//                     <img src={user.photoURL} alt="user" className='w-8 h-8 rounded-full cursor-pointer' />
-//                 ) : (
-//                     <FaRegCircleUser className='text-3xl text-gray-700 cursor-pointer' />
-//                 )}
-//             </Link>
-//             <div className='absolute left-0 mt-2 w-40 bg-white text-gray-600 text-sm rounded-lg p-2 hidden group-hover:block'>
-//                 {user.displayName || 'User'}
-//             </div>
-//         </div>
-//         <button onClick={handleSignOut} className='btn btn-sm'>Sign Out</button>
-//     </div>
-// )  : (
-//     <div className='flex gap-2'>
-         
-//         <Link to='/login' className='btn bg-base-200'>
-//         Login</Link>
-//         <Link to='/register' className='btn bg-base-200'>
-//         Register</Link>
-
-//     </div>
-    
-// )
-// }
 
     );
 };

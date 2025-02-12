@@ -52,7 +52,7 @@ const NavBar = () => {
                     </ul>
                     </div>
                     <img className='lg:h-14 md:h-12 h-10 lg:ml-0 -ml-4' src={sitelogo} alt="" />
-                    <a className="btn btn-ghost text-xl lg:ml-0 -ml-4 text-slate-200">MovieHub</a>
+                    <a className="btn btn-ghost text-xl lg:ml-0 -ml-4 lg:text-slate-200 text-black">MovieHub</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 text-slate-300 font-semibold text-md">
