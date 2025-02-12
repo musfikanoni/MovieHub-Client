@@ -27,7 +27,7 @@ const NavBar = () => {
     </>
 
     return (
-        <div className='backdrop-blur bg-white/10 fixed z-10 w-full top-0 py-2'>
+        <div className='backdrop-blur bg-white/5 fixed z-10 w-full top-0 py-2'>
             <div className="navbar  lg:w-10/12 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -93,7 +93,7 @@ const NavBar = () => {
                                         user.photoURL ? (
                                             <img src={user?.photoURL} alt="" className='w-10 h-10 rounded-full cursor-pointer' />
                                         ) : (
-                                            <FaRegCircleUser className='text-3xl text-gray-700 cursor-pointer' />
+                                            <FaRegCircleUser className='text-3xl text-gray-50 cursor-pointer' />
                                         )
                                     }
                                     </Link>
@@ -101,14 +101,14 @@ const NavBar = () => {
                                         {user?.displayName || 'User'}
                                     </div>
                                 </div>
-                                <button onClick={handleSignOut} className='btn'>Log Out</button>
+                                <button onClick={handleSignOut} className='btn bg-red-800 border-none text-white'>Log Out</button>
                             </div>
                         </> : <>
                             <Link to="/login">
-                                <button className='btn'>Login</button>
+                                <button className='btn bg-red-800 border-none text-white'>Login</button>
                             </Link>
                             <Link to="/register">
-                                <button className='btn'>Register</button>
+                                <button className='btn bg-red-800 border-none text-white'>Register</button>
                             </Link>
                         </>
                     }

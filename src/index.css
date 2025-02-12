@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.menu li>*:not(ul,.menu-title,details,.btn):active, .menu li>*:not(ul,.menu-title,details,.btn).active, .menu li>details>summary:active {
+    --tw-bg-opacity: 1;
+    background-color: oklch(0.51 0.24 28.64);
+    --tw-text-opacity: 1;
+    color: #FFFFFF;
+}
+
+.fill-current {
+    fill: oklch(0.94 0 0);
+}
