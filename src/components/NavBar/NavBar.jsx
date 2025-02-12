@@ -37,7 +37,7 @@ const NavBar = () => {
                         className="h-5 w-5"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke="currentColor">
+                        stroke="gray">
                         <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -51,8 +51,8 @@ const NavBar = () => {
                         {links}
                     </ul>
                     </div>
-                    <img className='h-14' src={sitelogo} alt="" />
-                    <a className="btn btn-ghost text-xl text-slate-200">MovieHub</a>
+                    <img className='lg:h-14 md:h-12 h-10 lg:ml-0 -ml-4' src={sitelogo} alt="" />
+                    <a className="btn btn-ghost text-xl lg:ml-0 -ml-4 text-slate-200">MovieHub</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 text-slate-300 font-semibold text-md">
@@ -60,7 +60,7 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-5">
-                    <div>
+                    <div className='md:block hidden'>
                         <label className="swap swap-rotate">
                             {/* this hidden checkbox controls the state */}
                             <input type="checkbox" className="theme-controller" value="synthwave" />
